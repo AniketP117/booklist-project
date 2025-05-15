@@ -1,9 +1,9 @@
-name: Deploy to S3
+name: Deploy React App to S3
 
 on:
   push:
     branches:
-      - main
+      - main  # adjust if you use a different deploy branch
 
 jobs:
   deploy:
@@ -16,12 +16,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18  # Use the version your project needs
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
+      - name: Build React app
         run: npm run build
 
       - name: Configure AWS credentials
@@ -32,4 +32,5 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy to S3
-        run: aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+        run: |
+          aws s3 sync build/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
