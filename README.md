@@ -87,4 +87,4 @@ The application is deployed using **AWS S3** and **CloudFront** with the **AWS C
 ---
 
 ## 🌐 Live Demo
-Provide your live link here once deployed.
+https://booklist-project-2025.s3.us-east-1.amazonaws.com/index.html
